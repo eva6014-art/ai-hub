@@ -76,14 +76,6 @@ h1 span{color:var(--accent);}
 .w-btn{font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:5px;border:1px solid var(--line2);background:transparent;color:var(--text);cursor:pointer;transition:all .15s;}
 .w-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-/* ── ③ Suffix ── */
-.suffix-grid{display:flex;gap:8px;flex-wrap:wrap;}
-.suffix-group-label{font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;width:100%;margin-top:4px;}
-.suffix-group-label:first-child{margin-top:0;}
-.suffix-chip{font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:6px;border:1px solid var(--line2);background:#fff;color:var(--muted);cursor:pointer;transition:all .2s;}
-.suffix-chip:hover{border-color:var(--accent4);color:var(--accent4);transform:translateY(-1px);}
-.suffix-chip.on{border-color:var(--accent4);color:var(--accent4);background:rgba(212,146,10,.08);}
-
 /* ── ④ History / Favorites ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
 @media(max-width:640px){.two-col{grid-template-columns:1fr;}}
@@ -227,27 +219,19 @@ header{animation:fadeUp .5s ease both;}
     </div>
   </div>
 
-  <!-- ③ SUFFIX CHIPS -->
-  <div class="section-label">快捷後綴</div>
-  <div class="panel" style="--p1:#fac96c;--p2:#fa6c9a;--p3:#7c6cfa;">
-    <div class="suffix-grid" id="suffix-grid">
-      <div class="suffix-group-label">Midjourney</div>
-      <span class="suffix-chip" data-v="--ar 16:9">--ar 16:9</span>
-      <span class="suffix-chip" data-v="--ar 9:16">--ar 9:16</span>
-      <span class="suffix-chip" data-v="--ar 1:1">--ar 1:1</span>
-      <span class="suffix-chip" data-v="--ar 4:3">--ar 4:3</span>
-      <span class="suffix-chip" data-v="--v 6.1">--v 6.1</span>
-      <span class="suffix-chip" data-v="--stylize 250">--stylize 250</span>
-      <span class="suffix-chip" data-v="--stylize 750">--stylize 750</span>
-      <span class="suffix-chip" data-v="--niji 6">--niji 6</span>
-      <span class="suffix-chip" data-v="--style raw">--style raw</span>
-      <span class="suffix-chip" data-v="--q 2">--q 2</span>
-      <div class="suffix-group-label">通用 / Flux / SD</div>
-      <span class="suffix-chip" data-v="--no text, watermark, logo">--no text, watermark</span>
-      <span class="suffix-chip" data-v="--no blurry, deformed, low quality">--no blurry, deformed</span>
-      <span class="suffix-chip" data-v="8k, ultra detailed, sharp focus">8k ultra detailed</span>
-      <span class="suffix-chip" data-v="cinematic lighting, dramatic shadows">cinematic lighting</span>
-      <span class="suffix-chip" data-v="photorealistic, hyperrealistic">photorealistic</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
 
@@ -273,6 +257,11 @@ header{animation:fadeUp .5s ease both;}
       </div>
     </div>
   </div>
+
+  <!-- ⑥ WORKFLOW -->
+  <div class="section-label">建議工作流程</div>
+  <div class="wf-wrap">
+    <div class="wf-title"><span style="color:var(--accent)">▶</span> 從參考圖到商業 KV 的完整流程</div>
 
   <!-- ⑤ TOOLS -->
   <div class="section-label">工具導覽</div>
@@ -311,10 +300,6 @@ header{animation:fadeUp .5s ease both;}
     </a>
   </div>
 
-  <!-- ⑥ WORKFLOW -->
-  <div class="section-label">建議工作流程</div>
-  <div class="wf-wrap">
-    <div class="wf-title"><span style="color:var(--accent)">▶</span> 從參考圖到商業 KV 的完整流程</div>
     <div class="wf-steps">
       <div class="wf-step">
         <a class="wf-node" style="--wc:#7c6cfa;" href="https://eva6014-art.github.io/PROMPT-INTERROGATOR/" target="_blank">
@@ -434,7 +419,7 @@ function onClipboardEdit() {
   clearTimeout(_editTimer);
   _editTimer = setTimeout(() => {
     const txt = el.textContent.trim();
-    if (txt) { saveClipboardRaw(txt, 'manual'); syncSuffixChips(); }
+    if (txt) { saveClipboardRaw(txt, 'manual'); }
   }, 700);
 }
 
@@ -446,7 +431,6 @@ function copyClipboard() {
 function clearClipboard() {
   localStorage.removeItem(KEY);
   renderClipboard();
-  syncSuffixChips();
   toast('共用板已清除');
 }
 function sendToGenerator() {
@@ -503,7 +487,6 @@ Tasks:
   saveClipboardRaw(cleaned, 'hub');
   _suppressRender = false;
   renderClipboard();
-  syncSuffixChips();
   btn.textContent = '✦ Clean';
   btn.classList.remove('loading');
   toast('✓ Prompt 已清洗並翻譯中文詞彙');
@@ -538,7 +521,6 @@ function applyWeight(open, close) {
   el.textContent = newTxt;
   el.classList.remove('empty');
   saveClipboardRaw(newTxt, 'manual');
-  syncSuffixChips();
   hideWeightPopup();
   toast('已套用 ' + open + '…' + close + ' 權重');
 }
@@ -546,33 +528,6 @@ document.addEventListener('mousedown', e => {
   if (!e.target.closest('#weight-popup') && !e.target.closest('#clipboard-display')) hideWeightPopup();
 });
 
-// ═══════════════════════════════════════════════════
-// ③ SUFFIX CHIPS
-// ═══════════════════════════════════════════════════
-document.querySelectorAll('.suffix-chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    const v = chip.dataset.v;
-    const data = loadClipboard();
-    let cur = (data && data.text) ? data.text : '';
-    if (cur.includes(v)) {
-      cur = cur.replace(v, '').replace(/,\s*,/g, ',').replace(/,\s*$/, '').replace(/^\s*,/, '').trim();
-      chip.classList.remove('on');
-      toast('已移除：' + v);
-    } else {
-      cur = cur ? cur.trimEnd() + ' ' + v : v;
-      chip.classList.add('on');
-      toast('✓ 已附加：' + v);
-    }
-    saveClipboardRaw(cur, 'hub');
-    renderClipboard();
-  });
-});
-
-function syncSuffixChips() {
-  const data = loadClipboard();
-  const txt = (data && data.text) ? data.text : '';
-  document.querySelectorAll('.suffix-chip').forEach(c => c.classList.toggle('on', txt.includes(c.dataset.v)));
-}
 
 // ═══════════════════════════════════════════════════
 // ④ HISTORY & FAVORITES
@@ -609,7 +564,6 @@ function clearFavorites() {
 function useItem(text, source) {
   saveClipboardRaw(text, source);
   renderClipboard();
-  syncSuffixChips();
   toast('✓ 已載入到共用板');
 }
 
@@ -648,8 +602,7 @@ function renderFavorites() {
 // ═══════════════════════════════════════════════════
 window.addEventListener('storage', e => {
   if (e.key === KEY) {
-    renderClipboard(); syncSuffixChips();
-    const data = loadClipboard();
+    renderClipboard();     const data = loadClipboard();
     if (data) {
       addToHistory(data.text, data.source);
       const sm2 = { interrogator:'Interrogator', generator:'Generator', artstyle:'Artstyle', kv:'KV Studio', hub:'Hub' };
@@ -684,9 +637,8 @@ renderApiKeyStatus();
 renderClipboard();
 renderHistory();
 renderFavorites();
-syncSuffixChips();
 updateStatus();
-setInterval(() => { renderClipboard(); syncSuffixChips(); updateStatus(); }, 3000);
+setInterval(() => { renderClipboard(); updateStatus(); }, 3000);
 </script>
 </body>
 </html>
