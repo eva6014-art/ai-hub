@@ -298,6 +298,14 @@ header{animation:fadeUp .5s ease both;}
       <div class="card-flow"><span class="flow-pill">結構設定</span><span class="flow-arrow">▶</span><span class="flow-pill">即時預覽</span><span class="flow-arrow">▶</span><span class="flow-pill">4 變體生成</span></div>
       <div class="card-footer"><div class="card-tags"><span class="tag">商業 KV</span><span class="tag">MJ v6.1</span></div><span class="card-arrow">→</span></div>
     </a>
+    <a class="tool-card" style="--cc:#f97316;" href="https://eva6014-art.github.io/kvflow/" target="_blank">
+      <div class="card-num">05 / KV FLOW</div>
+      <div class="card-title">KV 設計工作台</div>
+      <div class="card-en">KV Flow — AI Design Workbench</div>
+      <div class="card-desc">三欄式 AI 設計工作台，支援 Block 拖曳排序、策略變體生成、Prompt 評分、中文對照翻譯與快照歷史，完整覆蓋設計決策流程。</div>
+      <div class="card-flow"><span class="flow-pill">Block 組合</span><span class="flow-arrow">▶</span><span class="flow-pill">策略變體</span><span class="flow-arrow">▶</span><span class="flow-pill">評分輸出</span></div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">工作台</span><span class="tag">Block 系統</span><span class="tag">變體生成</span></div><span class="card-arrow">→</span></div>
+    </a>
   </div>
 
     <div class="wf-steps">
@@ -324,8 +332,48 @@ header{animation:fadeUp .5s ease both;}
           <div class="wf-nlabel">STEP 04</div><div class="wf-nname">KV Studio</div><div class="wf-nact">商業 KV 最終輸出</div>
         </a>
       </div>
+      <div class="wf-step"><div class="wf-conn"><div class="wf-line"></div><div class="wf-clabel">深度調整</div></div></div>
+      <div class="wf-step">
+        <a class="wf-node" style="--wc:#f97316;" href="https://eva6014-art.github.io/kvflow/" target="_blank">
+          <div class="wf-nlabel">STEP 05</div><div class="wf-nname">KV Flow</div><div class="wf-nact">Block 工作台 · 變體評分</div>
+        </a>
+      </div>
     </div>
   </div>
+  </div>
+
+  <!-- AI 工具快速連結 -->
+  <div class="section-label">AI 生成平台</div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px;">
+
+    <a href="https://chatgpt.com" target="_blank" style="text-decoration:none;">
+      <div style="background:#fff;border:1px solid var(--line2);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:14px;transition:border-color .2s,transform .2s;cursor:pointer;" onmouseover="this.style.borderColor='#10a37f';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+        <div style="width:38px;height:38px;border-radius:10px;background:#10a37f;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="22" height="22" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.075-2.755 10.079 10.079 0 0 0-10.412 6.985 9.967 9.967 0 0 0-6.634 4.746 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.075 2.755 10.079 10.079 0 0 0 10.413-6.986 9.967 9.967 0 0 0 6.634-4.746 10.079 10.079 0 0 0-1.241-11.817zm-17.994 7.063a1.989 1.989 0 0 1-1.27-.457l-4.477-3.752 2.517-3.004 2.791 2.338 5.584-6.666 2.517 3.004-7.662 8.537z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;">ChatGPT</div>
+          <div style="font-size:11px;color:var(--muted);">OpenAI — GPT-4o / DALL-E</div>
+        </div>
+        <span style="font-family:var(--mono);font-size:16px;color:#10a37f;margin-left:auto;opacity:.6;">→</span>
+      </div>
+    </a>
+
+    <a href="https://gemini.google.com" target="_blank" style="text-decoration:none;">
+      <div style="background:#fff;border:1px solid var(--line2);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:14px;transition:border-color .2s,transform .2s;cursor:pointer;" onmouseover="this.style.borderColor='#4285f4';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+        <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#4285f4,#9b72cb,#d96570);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="white"/></svg>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;">Gemini</div>
+          <div style="font-size:11px;color:var(--muted);">Google — Gemini 2.0 / Imagen</div>
+        </div>
+        <span style="font-family:var(--mono);font-size:16px;color:#4285f4;margin-left:auto;opacity:.6;">→</span>
+      </div>
+    </a>
+
+  </div>
+
 
   <footer>
     <span class="footer-text">Eva's AI Studio © 2025 — Powered by Gemini</span>
@@ -334,6 +382,9 @@ header{animation:fadeUp .5s ease both;}
       <a class="footer-link" href="https://eva6014-art.github.io/ai-prompt-generator/" target="_blank">Generator</a>
       <a class="footer-link" href="https://eva6014-art.github.io/AI-artstyle-prompt/" target="_blank">Artstyle</a>
       <a class="footer-link" href="https://eva6014-art.github.io/AI-aggregation-A/" target="_blank">KV Studio</a>
+      <a class="footer-link" href="https://eva6014-art.github.io/kvflow/" target="_blank">KV Flow</a>
+      <a class="footer-link" href="https://chatgpt.com" target="_blank">ChatGPT</a>
+      <a class="footer-link" href="https://gemini.google.com" target="_blank">Gemini</a>
     </div>
   </footer>
 </div>
